@@ -1,0 +1,21 @@
+server:
+  port: 9090
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.quan.forumproject.pojo
+  configuration:
+    cache-enabled: true     # 开启二级缓存
+
+spring:
+  redis:
+    host: 120.25.153.110
+    password: 22222l22222123
+    database: 2   # 使用2号数据库
+    port: 6379
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/web_forum?characterEncoding=utf-8&serverTimezone=UTC
+    username: HildaData
+    password: 22222l22222123
+    driver-class-name: com.mysql.cj.jdbc.Driver
