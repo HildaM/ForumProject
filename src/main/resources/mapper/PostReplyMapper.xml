@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.quan.forumproject.mapper.PostReplyMapper">
+
+    <insert id="addComment" parameterType="postReply">
+        INSERT INTO web_forum.postreplies
+            (pid, comment, uid)
+        VALUES
+            (#{pid}, #{rcontent}, #{uid})
+    </insert>
+
+
+    <select id="getRepliesByPid" resultType="PostReply">
+        select  r.*, u.username as uname
+        from (web_forum.postreplies r
+            join
+            web_forum.posts p
+            on r.pid = p.pid)
+                 join
+             web_forum.users u
+             on
+                 r.uid = u.id
+        where  p.pid = #{pid};
+    </select>
+
+
+</mapper>

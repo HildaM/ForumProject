@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.quan.forumproject.mapper.PostMapper">
+    <sql id="TABLES">
+        web_forum.posts
+    </sql>
+
+    <!--  获取所有帖子的resultmap映射  -->
+    <resultMap id="getAllPostsInformation" type="Post">
+        <result property="pid" column="pid"/>
+        <result property="pname" column="pname"/>
+        <result property="pcontent" column="pcontent"/>
+        <result property="praise" column="praise"/>
+        <result property="pcreate" column="pcrete"/>
+        <result property="pmodified" column="pmodified"/>
+
+        <!--  根据uid查询对于的user类     -->
+        <association property="user" javaType="User">
+            <result property="id" column="id"/>
+            <result property="username" column="username"/>
+        </association>
+
+        <!--    根据tid查帖子主题    -->
+        <association property="topic" javaType="Topic">
+            <result property="tid" column="tid"/>
+        </association>
+
+        <!--   根据rid查询所有评论     -->
+        <collection property="postReply" ofType="PostReply">
+            <result property="rid" column="rid"/>
+            <result property="rcontent" column="rcontent"/>
+            <result property="rtime" column="rtime"/>
+            <result property="uid" column="uid"/>
+        </collection>
+    </resultMap>
+
+
+    <!--  获取所有帖子  -->
+    <select id="getAllPosts" resultMap="getAllPostsInformation">
+        select p.*, t.*, u.*, r.* from posts p, topics t, users u, postreplies r
+        where
+            p.tid = t.tid and p.uid = u.id;
+    </select>
+
+
+    <!-- 获取指定帖子的所有评论   -->
+
+
+
+
+    <!-- 发布帖子  -->
+    <insert id="publishPost" parameterType="Post">
+        INSERT INTO <include refid="TABLES"/>
+        (pname, pcontent, postImg, tid, uid)
+        VALUES
+        (#{pname}, #{pcontent}, #{postImg}, #{tid}, #{uid})
+    </insert>
+
+
+</mapper>

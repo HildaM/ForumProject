@@ -33,7 +33,7 @@ public class UserDetailService implements UserDetailsService {
         // 1. 查询用户信息
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
         // 双冒号（::）表示引用
-        queryWrapper.eq(User::getUserName, username);
+        queryWrapper.eq(User::getUsername, username);
 
         // select * from users where username = #{username}
         User user = userMapper.selectOne(queryWrapper);

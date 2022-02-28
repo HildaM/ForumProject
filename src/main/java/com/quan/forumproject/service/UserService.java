@@ -15,4 +15,7 @@ public interface UserService {
 
     // 退出登录
     CommonResult logout();
+
+    // 获取当前用户信息
+    CommonResult getCurrentUserInfo();
 }

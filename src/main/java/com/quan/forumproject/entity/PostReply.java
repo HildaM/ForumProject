@@ -24,10 +24,10 @@ public class PostReply {
     @TableId
     private Integer rid;
 
-    private String rcontent;
+    private String comment;
     private Timestamp rtime;
 
-    private Integer uid;
+    private Long uid;
     private String uname;
 
     private Integer pid;

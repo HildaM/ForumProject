@@ -21,6 +21,7 @@ public class UserController {
 
     @PostMapping("/login")
     public CommonResult login(@RequestBody User user) {
+        System.out.println(user.getUsername() + " " + user.getPassword());
         // 登录操作
         return userService.login(user);
     }
@@ -28,5 +29,10 @@ public class UserController {
     @RequestMapping("/user/logout")
     public CommonResult logout() {
         return userService.logout();
+    }
+
+    @RequestMapping("/user/detail")
+    public CommonResult getDetail() {
+        return userService.getCurrentUserInfo();
     }
 }

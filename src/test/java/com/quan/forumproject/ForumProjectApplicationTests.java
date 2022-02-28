@@ -2,7 +2,11 @@ package com.quan.forumproject;
 
 import com.quan.forumproject.common.utils.JwtUtil;
 import com.quan.forumproject.common.utils.RedisCache;
+import com.quan.forumproject.entity.Post;
+import com.quan.forumproject.entity.PostReply;
 import com.quan.forumproject.mapper.MenuMapper;
+import com.quan.forumproject.mapper.PostMapper;
+import com.quan.forumproject.mapper.PostReplyMapper;
 import com.quan.forumproject.mapper.UserMapper;
 import com.quan.forumproject.entity.User;
 import io.jsonwebtoken.Claims;
@@ -73,6 +77,28 @@ class ForumProjectApplicationTests {
         RedisCache redisCache = new RedisCache();
         boolean b = redisCache.deleteObject("login:" + 2);
         System.out.println(b);
+    }
+
+
+    @Autowired
+    private PostMapper postMapper;
+    @Test
+    public void testPostMapper() {
+        List<Post> allPosts = postMapper.getAllPosts();
+        for (Post post : allPosts) {
+            System.out.println(post);
+        }
+    }
+
+
+    @Autowired
+    private PostReplyMapper postReplyMapper;
+    @Test
+    public void testReplyMapper() {
+        List<PostReply> repliesByPid = postReplyMapper.getRepliesByPid(1);
+        for (PostReply postReply : repliesByPid) {
+            System.out.println(postReply);
+        }
     }
 
 }

@@ -23,6 +23,7 @@ import java.util.Date;
 public class User implements Serializable {
     private static final long serialVersionUID = -40356785423868312L;
 
+
     /**
      * 主键
      */
@@ -31,7 +32,7 @@ public class User implements Serializable {
     /**
      * 用户名
      */
-    private String userName;
+    private String username;
     /**
      * 昵称
      */

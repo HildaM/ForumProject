@@ -1,7 +1,10 @@
 package com.quan.forumproject.service;
 
+import com.quan.forumproject.common.api.CommonResult;
 import com.quan.forumproject.entity.Post;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -11,6 +14,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author Hilda_quan
  * @since 2022-02-28
  */
-public interface PostService extends IService<Post> {
+public interface PostService {
 
+    // 获取所有帖子
+    CommonResult getAllPosts();
+
+    // 发布帖子
+    CommonResult publishPost(Post post);
 }

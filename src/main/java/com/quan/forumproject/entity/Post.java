@@ -34,7 +34,7 @@ public class Post {
     private Integer tid;
     private Topic topic;
 
-    private Integer uid;
+    private Long uid;
     private User user;
 
     private Integer rid;

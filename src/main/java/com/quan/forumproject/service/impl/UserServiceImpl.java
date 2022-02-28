@@ -5,6 +5,7 @@ import com.quan.forumproject.common.utils.JwtUtil;
 import com.quan.forumproject.common.utils.RedisCache;
 import com.quan.forumproject.dto.UserDetail;
 import com.quan.forumproject.entity.User;
+import com.quan.forumproject.mapper.UserMapper;
 import com.quan.forumproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -32,10 +33,13 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private UserMapper userMapper;
+
     @Override
     public CommonResult login(User user) {
         // 1. 获取AuthenticationManager的authenticate方法进行验证
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword());
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
         Authentication authenticate = authenticationManager.authenticate(authenticationToken);
 
         /**
@@ -74,5 +78,22 @@ public class UserServiceImpl implements UserService {
         redisCache.deleteObject("login:" + userId);
 
         return CommonResult.success("注销成功");
+    }
+
+
+    @Override
+    public CommonResult getCurrentUserInfo() {
+        // 1. 获取当前用户信息
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetail userDetail = (UserDetail) authentication.getPrincipal();
+
+        // 2. 获取当前用户信息
+        User user = userDetail.getUser();
+
+        // 3. 返回信息
+        if (user != null)
+            return CommonResult.success(user);
+
+        return CommonResult.failed("获取用户信息失败");
     }
 }
