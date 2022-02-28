@@ -4,9 +4,8 @@ import com.quan.forumproject.common.api.CommonResult;
 import com.quan.forumproject.pojo.User;
 import com.quan.forumproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @ClassName: UserController
@@ -25,5 +24,10 @@ public class UserController {
     public CommonResult login(@RequestBody User user) {
         // 登录操作
         return userService.login(user);
+    }
+
+    @RequestMapping("/user/logout")
+    public CommonResult logout() {
+        return userService.logout();
     }
 }

@@ -1,9 +1,18 @@
 package com.quan.forumproject.config;
 
+import com.quan.forumproject.filter.JwtAuthenticationTokenFilter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * @ClassName: SecurityConfig
@@ -13,8 +22,11 @@ import org.springframework.security.config.http.SessionCreationPolicy;
  */
 
 @Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 
     // 配置Security
     @Override
@@ -27,10 +39,35 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 // 测试情况下，允许所有访问
-                .anyRequest().permitAll();
+                .antMatchers("/login").anonymous()
+                .anyRequest().authenticated();
 
+        // 记一个大“bug”
+        // http.logout().logoutUrl("");
+        // security默认的注销连接是 /logout，如果不重写直接用，那么访问 /logout 将不会跳转到自己的logout上！！！
+        // 默认会跳转到security自己的logout!!!
 
         // 允许跨域
         http.cors();
+
+        // 配置过滤器
+        http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
     }
+
+
+    // 配置密码加密类
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+
+    // 注入AuthenticationManager
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+
 }

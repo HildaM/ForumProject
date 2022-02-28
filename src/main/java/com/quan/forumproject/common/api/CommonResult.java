@@ -45,6 +45,18 @@ public class CommonResult<T> {
     }
 
     /**
+     * @Author Hilda
+     * @Description //TODO 成功返回信息
+     * @Date 15:33 2022/2/27
+     * @Param [message]
+     * @returnValue com.quan.forumproject.common.api.CommonResult<T>
+     **/
+    public static <T> CommonResult<T> success(String message) {
+        return new CommonResult<T>(ResultCode.SUCCESS.getCode(), message, null);
+    }
+    
+
+    /**
      * @Description //TODO 失败返回结果
      * @Date 15:38 2022/1/30
      * @Param [errorCode]

@@ -11,5 +11,8 @@ import com.quan.forumproject.pojo.User;
  */
 public interface UserService {
     // 登录操作
-    public CommonResult login(User user);
+    CommonResult login(User user);
+
+    // 退出登录
+    CommonResult logout();
 }
