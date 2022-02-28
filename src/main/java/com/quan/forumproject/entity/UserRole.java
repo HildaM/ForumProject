@@ -1,7 +1,6 @@
 package com.quan.forumproject.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
@@ -18,22 +17,22 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@TableName("topics")
-public class Topic implements Serializable {
+@TableName("forum_user_role")
+public class UserRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 板块id
+     * 用户id
      */
-    @TableId(value = "tid", type = IdType.AUTO)
-    private Integer tid;
+    @TableId(value = "user_id", type = IdType.AUTO)
+    private Long userId;
 
     /**
-     * 板块名称
+     * 角色id
      */
-    @TableField("tname")
-    private String tname;
+    @TableId("role_id")
+    private Long roleId;
 
 
 }

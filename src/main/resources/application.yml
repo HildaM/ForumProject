@@ -9,8 +9,8 @@ mybatis-plus:
 
 spring:
   redis:
-    host: 120.25.153.110
-    password: 22222l22222123
+    host:
+    password: 
     database: 2   # 使用2号数据库
     port: 6379
 

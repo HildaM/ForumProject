@@ -1,7 +1,7 @@
 package com.quan.forumproject.mapper;
 
-import com.quan.forumproject.entity.entity.Menu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.quan.forumproject.entity.Menu;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
