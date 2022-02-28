@@ -31,7 +31,6 @@ public class UserRole implements Serializable {
     /**
      * 角色id
      */
-    @TableId("role_id")
     private Long roleId;
 
 

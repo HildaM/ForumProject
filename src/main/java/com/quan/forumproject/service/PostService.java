@@ -1,6 +1,6 @@
 package com.quan.forumproject.service;
 
-import com.quan.forumproject.entity.Posts;
+import com.quan.forumproject.entity.Post;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author Hilda_quan
  * @since 2022-02-28
  */
-public interface PostService extends IService<Posts> {
+public interface PostService extends IService<Post> {
 
 }

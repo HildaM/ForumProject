@@ -2,6 +2,7 @@ package com.quan.forumproject;
 
 import com.quan.forumproject.common.utils.JwtUtil;
 import com.quan.forumproject.common.utils.RedisCache;
+import com.quan.forumproject.mapper.MenuMapper;
 import com.quan.forumproject.mapper.UserMapper;
 import com.quan.forumproject.entity.User;
 import io.jsonwebtoken.Claims;
@@ -25,11 +26,23 @@ class ForumProjectApplicationTests {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private MenuMapper menuMapper;
+
     @Test
-    void testMapper() {
+    void testUserMapper() {
         System.out.println("Test userMapper");
         List<User> users = userMapper.selectList(null);
         System.out.println(users);
+    }
+
+    @Test
+    void testMenuMapper() {
+        System.out.println("testMenuMapper");
+        List<String> strings = menuMapper.selectPermsByUserId(1);
+        for (String string : strings) {
+            System.out.println(string);
+        }
     }
 
     @Test

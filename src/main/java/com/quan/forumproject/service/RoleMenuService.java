@@ -1,7 +1,7 @@
 package com.quan.forumproject.service;
 
-import com.quan.forumproject.entity.Menu;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.quan.forumproject.entity.RoleMenu;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author Hilda_quan
  * @since 2022-02-28
  */
-public interface RoleMenuService extends IService<Menu.RoleMenu> {
+public interface RoleMenuService extends IService<RoleMenu> {
 
 }

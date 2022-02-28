@@ -25,13 +25,13 @@ public class RoleMenu implements Serializable {
     /**
      * 角色ID
      */
+
     @TableId(value = "role_id", type = IdType.AUTO)
     private Long roleId;
 
     /**
      * 菜单id
      */
-    @TableId("menu_id")
     private Long menuId;
 
 

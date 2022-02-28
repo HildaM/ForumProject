@@ -3,7 +3,7 @@
 <mapper namespace="com.quan.forumproject.mapper.RoleMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.quan.forumproject.entity.Menu.Role">
+    <resultMap id="BaseResultMap" type="com.quan.forumproject.entity.Role">
         <id column="id" property="id" />
         <result column="name" property="name" />
         <result column="role_key" property="roleKey" />

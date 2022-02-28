@@ -2,6 +2,7 @@ package com.quan.forumproject.mapper;
 
 import com.quan.forumproject.entity.Menu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.quan.forumproject.entity.UserRole;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -13,6 +14,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @since 2022-02-28
  */
 @Mapper
-public interface UserRoleMapper extends BaseMapper<Menu.UserRole> {
+public interface UserRoleMapper extends BaseMapper<UserRole> {
 
 }

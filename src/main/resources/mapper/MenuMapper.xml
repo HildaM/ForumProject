@@ -20,4 +20,21 @@
         <result column="remark" property="remark" />
     </resultMap>
 
+
+<!-- 根据用户id查询对应的权限信息  -->
+    <select id="selectPermsByUserId" resultType="java.lang.String">
+        SELECT
+            DISTINCT m.`perms`
+        FROM
+            forum_user_role ur
+                LEFT JOIN `forum_role` r ON ur.role_id = r.id
+                LEFT JOIN `forum_role_menu` rm ON ur.role_id = rm.role_id
+                LEFT JOIN `forum_menu` m ON m.id = rm.menu_id
+        WHERE
+            user_id = #{userId}
+            AND r.status = 0
+            AND m.status = 0
+
+    </select>
+
 </mapper>

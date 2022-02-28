@@ -3,6 +3,9 @@ package com.quan.forumproject.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.quan.forumproject.entity.Menu;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,5 +17,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface MenuMapper extends BaseMapper<Menu> {
-
+    // 根据用户id查询对应的权限信息
+    List<String> selectPermsByUserId(@Param("userId") Integer userId);
 }
