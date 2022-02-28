@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quan.forumproject.mapper.MenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.quan.forumproject.entity.entity.Menu">
+        <id column="id" property="id" />
+        <result column="menu_name" property="menuName" />
+        <result column="path" property="path" />
+        <result column="component" property="component" />
+        <result column="visible" property="visible" />
+        <result column="status" property="status" />
+        <result column="perms" property="perms" />
+        <result column="icon" property="icon" />
+        <result column="create_by" property="createBy" />
+        <result column="create_time" property="createTime" />
+        <result column="update_by" property="updateBy" />
+        <result column="update_time" property="updateTime" />
+        <result column="del_flag" property="delFlag" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+</mapper>

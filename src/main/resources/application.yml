@@ -3,7 +3,7 @@ server:
 
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
-  type-aliases-package: com.quan.forumproject.pojo
+  type-aliases-package: com.quan.forumproject.entity
   configuration:
     cache-enabled: true     # 开启二级缓存
 

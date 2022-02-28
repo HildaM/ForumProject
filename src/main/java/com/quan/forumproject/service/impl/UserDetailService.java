@@ -3,7 +3,7 @@ package com.quan.forumproject.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.quan.forumproject.dto.UserDetail;
 import com.quan.forumproject.mapper.UserMapper;
-import com.quan.forumproject.pojo.User;
+import com.quan.forumproject.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

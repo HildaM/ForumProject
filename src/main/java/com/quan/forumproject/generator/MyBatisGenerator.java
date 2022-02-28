@@ -18,10 +18,14 @@ import java.util.List;
 public class MyBatisGenerator {
     public static void main(String[] args) {
         List<String> tables = new ArrayList<>();
-        tables.add("p_user");
-        tables.add("p_question");
-        tables.add("p_answer");
-        tables.add("p_correct");
+        tables.add("forum_role_menu");
+        tables.add("forum_user_role");
+        tables.add("forum_role");
+        tables.add("forum_menu");
+        tables.add("postreplies");
+        tables.add("posts");
+        tables.add("topics");
+        tables.add("users");
 
         FastAutoGenerator.create("jdbc:mysql://localhost:3306/web_forum","HildaData","22222l22222123")
                 .globalConfig(builder -> {
@@ -33,7 +37,7 @@ public class MyBatisGenerator {
                 })
                 .packageConfig(builder -> {
                     builder.parent("com.quan.forumproject")
-                            .moduleName("pojo")
+//                            .moduleName("entity")
                             .entity("entity")
                             .service("service")
                             .serviceImpl("serviceImpl")

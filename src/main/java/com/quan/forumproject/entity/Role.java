@@ -1,6 +1,5 @@
-package com.quan.forumproject.pojo;
+package com.quan.forumproject.entity;
 
-import com.alibaba.fastjson.annotation.JSONField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

@@ -1,7 +1,7 @@
 package com.quan.forumproject.service;
 
 import com.quan.forumproject.common.api.CommonResult;
-import com.quan.forumproject.pojo.User;
+import com.quan.forumproject.entity.User;
 
 /**
  * @ClassName: UserService

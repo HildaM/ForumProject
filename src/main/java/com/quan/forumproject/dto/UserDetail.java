@@ -1,15 +1,13 @@
 package com.quan.forumproject.dto;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.quan.forumproject.pojo.User;
+import com.quan.forumproject.entity.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;

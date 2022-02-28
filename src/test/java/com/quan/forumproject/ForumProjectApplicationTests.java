@@ -3,7 +3,7 @@ package com.quan.forumproject;
 import com.quan.forumproject.common.utils.JwtUtil;
 import com.quan.forumproject.common.utils.RedisCache;
 import com.quan.forumproject.mapper.UserMapper;
-import com.quan.forumproject.pojo.User;
+import com.quan.forumproject.entity.User;
 import io.jsonwebtoken.Claims;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

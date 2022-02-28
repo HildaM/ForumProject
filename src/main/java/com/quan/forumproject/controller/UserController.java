@@ -1,10 +1,9 @@
 package com.quan.forumproject.controller;
 
 import com.quan.forumproject.common.api.CommonResult;
-import com.quan.forumproject.pojo.User;
+import com.quan.forumproject.entity.User;
 import com.quan.forumproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**

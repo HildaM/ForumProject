@@ -1,4 +1,4 @@
-package com.quan.forumproject.pojo;
+package com.quan.forumproject.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;

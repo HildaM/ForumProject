@@ -1,7 +1,7 @@
 package com.quan.forumproject.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.quan.forumproject.pojo.Topic;
+import com.quan.forumproject.entity.Topic;
 
 /**
  * @ClassName: TopicMapper

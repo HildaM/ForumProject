@@ -1,18 +1,15 @@
 package com.quan.forumproject.service.impl;
 
 import com.quan.forumproject.common.api.CommonResult;
-import com.quan.forumproject.common.api.ResultCode;
 import com.quan.forumproject.common.utils.JwtUtil;
 import com.quan.forumproject.common.utils.RedisCache;
 import com.quan.forumproject.dto.UserDetail;
-import com.quan.forumproject.mapper.UserMapper;
-import com.quan.forumproject.pojo.User;
+import com.quan.forumproject.entity.User;
 import com.quan.forumproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
