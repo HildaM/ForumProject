@@ -6,6 +6,7 @@ import com.quan.forumproject.entity.Post;
 import com.quan.forumproject.mapper.PostMapper;
 import com.quan.forumproject.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +38,7 @@ public class PostController {
 
     // 发布帖子
     @PostMapping("/publish")
+    @PreAuthorize("hasAuthority('user:post:publish')")
     public CommonResult publishPost(@RequestBody Post post) {
         return postService.publishPost(post);
     }

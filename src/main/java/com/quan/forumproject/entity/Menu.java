@@ -25,7 +25,7 @@ import java.util.Date;
 public class Menu implements Serializable {
     private static final long serialVersionUID = 5552993973425685961L;
 
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Long id;
     /**
      * 菜单名

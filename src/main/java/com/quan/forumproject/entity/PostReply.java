@@ -1,5 +1,6 @@
 package com.quan.forumproject.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,7 @@ import java.sql.Timestamp;
 @TableName("postreplies")
 public class PostReply {
 
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Integer rid;
 
     private String comment;

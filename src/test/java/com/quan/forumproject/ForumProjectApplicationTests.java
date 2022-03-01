@@ -1,5 +1,6 @@
 package com.quan.forumproject;
 
+import com.quan.forumproject.common.api.CommonResult;
 import com.quan.forumproject.common.utils.JwtUtil;
 import com.quan.forumproject.common.utils.RedisCache;
 import com.quan.forumproject.entity.Post;
@@ -9,13 +10,16 @@ import com.quan.forumproject.mapper.PostMapper;
 import com.quan.forumproject.mapper.PostReplyMapper;
 import com.quan.forumproject.mapper.UserMapper;
 import com.quan.forumproject.entity.User;
+import com.quan.forumproject.service.impl.UserServiceImpl;
 import io.jsonwebtoken.Claims;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.quan.forumproject.common.utils.JwtUtil.createJWT;
 
@@ -43,7 +47,7 @@ class ForumProjectApplicationTests {
     @Test
     void testMenuMapper() {
         System.out.println("testMenuMapper");
-        List<String> strings = menuMapper.selectPermsByUserId(1);
+        List<String> strings = menuMapper.selectPermsByUserId(1L);
         for (String string : strings) {
             System.out.println(string);
         }
@@ -99,6 +103,26 @@ class ForumProjectApplicationTests {
         for (PostReply postReply : repliesByPid) {
             System.out.println(postReply);
         }
+    }
+
+
+    @Autowired
+    private UserServiceImpl userService;
+    @Test
+    public void testUserService() {
+        // 1. 测试加密
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String encode = encoder.encode("1234");
+        System.out.println(encoder.matches("1234", encode));
+
+        // 2. 测试注册
+        Map<String, String> userInfo = new HashMap<>();
+        userInfo.put("username", "NewUser");
+        userInfo.put("password", "1234");
+        userInfo.put("email", "123@123.com");
+
+        CommonResult commonResult = userService.userSignUp(userInfo);
+        System.out.println(commonResult);
     }
 
 }

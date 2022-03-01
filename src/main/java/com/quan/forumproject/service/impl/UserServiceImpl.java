@@ -7,14 +7,17 @@ import com.quan.forumproject.dto.UserDetail;
 import com.quan.forumproject.entity.User;
 import com.quan.forumproject.mapper.UserMapper;
 import com.quan.forumproject.service.UserService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -95,5 +98,30 @@ public class UserServiceImpl implements UserService {
             return CommonResult.success(user);
 
         return CommonResult.failed("获取用户信息失败");
+    }
+
+
+    // 用户注册
+    @Override
+    public CommonResult userSignUp(Map<String, String> userInfo) {
+        // 1. 数据拆包
+        String username = userInfo.get("username");
+        String password = userInfo.get("password");
+        String email = userInfo.get("email");
+
+        // 2. 数据校验
+        if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password))
+            return CommonResult.failed("账号或密码违规，请重新输入");
+
+        // 3.. 对密码进行加密处理
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String encodePassword = encoder.encode(password);
+
+        // 4. 添加用户
+        User user = new User(username, encodePassword, email);
+        if (userMapper.insert(user) > 0)
+            return CommonResult.success("创建用户成功");
+
+        return CommonResult.failed("创建用户失败");
     }
 }

@@ -7,6 +7,7 @@ import com.quan.forumproject.mapper.UserMapper;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -17,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collection;
 
 /**
  * @ClassName: JwtAuthenticationTokenFilter
@@ -64,6 +66,12 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                 new UsernamePasswordAuthenticationToken(userDetail, null, userDetail.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 
+        // 测试代码，输出权限
+        Collection<? extends GrantedAuthority> authorities =
+                userDetail.getAuthorities();
+        for (GrantedAuthority authority : authorities) {
+            System.out.println(authority);
+        }
 
         // 5. 放行代码
         filterChain.doFilter(request, response);

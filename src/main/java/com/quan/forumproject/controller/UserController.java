@@ -4,7 +4,10 @@ import com.quan.forumproject.common.api.CommonResult;
 import com.quan.forumproject.entity.User;
 import com.quan.forumproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 /**
  * @ClassName: UserController
@@ -21,7 +24,6 @@ public class UserController {
 
     @PostMapping("/login")
     public CommonResult login(@RequestBody User user) {
-        System.out.println(user.getUsername() + " " + user.getPassword());
         // 登录操作
         return userService.login(user);
     }
@@ -32,7 +34,13 @@ public class UserController {
     }
 
     @RequestMapping("/user/detail")
+    @PreAuthorize("hasAuthority('user:detail')")
     public CommonResult getDetail() {
         return userService.getCurrentUserInfo();
+    }
+
+    @PostMapping("/signup")
+    public CommonResult signup(@RequestBody Map<String, String> userInfo) {
+        return userService.userSignUp(userInfo);
     }
 }

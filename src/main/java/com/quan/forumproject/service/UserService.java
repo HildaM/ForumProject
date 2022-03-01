@@ -3,6 +3,8 @@ package com.quan.forumproject.service;
 import com.quan.forumproject.common.api.CommonResult;
 import com.quan.forumproject.entity.User;
 
+import java.util.Map;
+
 /**
  * @ClassName: UserService
  * @Description: 用户Service
@@ -18,4 +20,7 @@ public interface UserService {
 
     // 获取当前用户信息
     CommonResult getCurrentUserInfo();
+
+    // 用户注册
+    CommonResult userSignUp(Map<String, String> userInfo);
 }

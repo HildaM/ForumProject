@@ -2,6 +2,7 @@ package com.quan.forumproject.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.quan.forumproject.dto.UserDetail;
+import com.quan.forumproject.mapper.MenuMapper;
 import com.quan.forumproject.mapper.UserMapper;
 import com.quan.forumproject.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class UserDetailService implements UserDetailsService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private MenuMapper menuMapper;
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -42,9 +46,7 @@ public class UserDetailService implements UserDetailsService {
             throw new RuntimeException("用户名或密码错误");
 
         // 2. 查询对应的权限
-        // 测试代码：此处先将权限给写死
-        List<String> permission = new ArrayList<>();
-        permission.add("test");
+        List<String> permission = menuMapper.selectPermsByUserId(user.getId());
 
         return new UserDetail(user, permission);
     }

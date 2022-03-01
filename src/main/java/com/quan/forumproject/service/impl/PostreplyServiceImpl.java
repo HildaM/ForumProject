@@ -33,6 +33,8 @@ public class PostreplyServiceImpl implements PostreplyService {
         // 1. 获取指定pid的所有回复
         List<PostReply> replies = postReplyMapper.getRepliesByPid(pid);
 
+        if (replies.size() <= 0) return CommonResult.success("暂无回复");
+
         // 2. 封装参数
         Map<String, Object> result = new HashMap<>();
         result.put("pname", null);

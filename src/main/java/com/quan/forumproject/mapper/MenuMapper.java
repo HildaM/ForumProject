@@ -18,5 +18,5 @@ import java.util.List;
 @Mapper
 public interface MenuMapper extends BaseMapper<Menu> {
     // 根据用户id查询对应的权限信息
-    List<String> selectPermsByUserId(@Param("userId") Integer userId);
+    List<String> selectPermsByUserId(@Param("userId") Long userId);
 }
