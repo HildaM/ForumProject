@@ -6,6 +6,7 @@ mybatis-plus:
   type-aliases-package: com.quan.forumproject.entity
   configuration:
     cache-enabled: true     # 开启二级缓存
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  # 启动日志
 
 spring:
   redis:

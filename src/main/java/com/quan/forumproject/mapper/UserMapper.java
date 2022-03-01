@@ -10,5 +10,6 @@ import com.quan.forumproject.entity.User;
  * @date: 2022/2/27 9:39
  */
 public interface UserMapper extends BaseMapper<User> {
-
+    // 获取用户的id
+    Long getUserIdByName(String username);
 }

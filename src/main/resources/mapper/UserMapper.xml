@@ -5,7 +5,7 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.quan.forumproject.entity.User">
         <id column="id" property="id" />
-        <result column="user_name" property="userName" />
+        <result column="username" property="username" />
         <result column="nick_name" property="nickName" />
         <result column="password" property="password" />
         <result column="status" property="status" />
@@ -20,5 +20,11 @@
         <result column="update_time" property="updateTime" />
         <result column="del_flag" property="delFlag" />
     </resultMap>
+
+    <select id="getUserIdByName" resultType="java.lang.Long">
+        SELECT u.id
+        FROM web_forum.users u
+        WHERE username = #{username}
+    </select>
 
 </mapper>

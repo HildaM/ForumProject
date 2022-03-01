@@ -37,7 +37,6 @@ public class PostrepliesController {
     // 在指定楼层下发布评论
     @RequestMapping("/detail/comment")
     public CommonResult publishComment(@RequestBody PostReply reply) {
-        System.out.println(reply);
         return postreplyService.addReply(reply);
     }
 }

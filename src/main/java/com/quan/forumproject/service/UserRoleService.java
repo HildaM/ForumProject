@@ -13,5 +13,6 @@ import com.quan.forumproject.entity.UserRole;
  * @since 2022-02-28
  */
 public interface UserRoleService extends IService<UserRole> {
-
+    // 配置普通用户的角色
+    boolean setNormalUserRole(Long userId);
 }

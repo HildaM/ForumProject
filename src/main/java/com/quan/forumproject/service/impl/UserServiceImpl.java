@@ -1,11 +1,13 @@
 package com.quan.forumproject.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.quan.forumproject.common.api.CommonResult;
 import com.quan.forumproject.common.utils.JwtUtil;
 import com.quan.forumproject.common.utils.RedisCache;
 import com.quan.forumproject.dto.UserDetail;
 import com.quan.forumproject.entity.User;
 import com.quan.forumproject.mapper.UserMapper;
+import com.quan.forumproject.service.UserRoleService;
 import com.quan.forumproject.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private UserRoleService userRoleService;
 
     @Override
     public CommonResult login(User user) {
@@ -101,7 +106,13 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    // 用户注册
+    /**
+     * @Author Hilda
+     * @Description //TODO 用户注册，默认配置普通用户角色
+     * @Date 18:43 2022/3/1
+     * @Param [userInfo]
+     * @returnValue com.quan.forumproject.common.api.CommonResult
+     **/
     @Override
     public CommonResult userSignUp(Map<String, String> userInfo) {
         // 1. 数据拆包
@@ -113,14 +124,19 @@ public class UserServiceImpl implements UserService {
         if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password))
             return CommonResult.failed("账号或密码违规，请重新输入");
 
-        // 3.. 对密码进行加密处理
+        // 3. 对密码进行加密处理
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String encodePassword = encoder.encode(password);
 
         // 4. 添加用户
         User user = new User(username, encodePassword, email);
-        if (userMapper.insert(user) > 0)
-            return CommonResult.success("创建用户成功");
+        if (userMapper.insert(user) > 0) {
+            // 添加用户成功后，配置普通用户的角色权限
+            Long userId = userMapper.getUserIdByName(username);
+
+            if (userRoleService.setNormalUserRole(userId))
+                return CommonResult.success("创建用户成功");
+        }
 
         return CommonResult.failed("创建用户失败");
     }
